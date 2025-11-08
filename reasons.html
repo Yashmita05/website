@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reasons Why I Love You 💕</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="reasons-page">
+  <h1 class="glow-heading">Reasons Why I Love My Bf 💖</h1>
+
+  <div class="reasons-container">
+    <div class="reason-card" data-reason="He is sweet.💕">❤️ Reason 1</div>
+    <div class="reason-card" data-reason="He makes me laugh even when I don't feel like smiling. ✨">💗 Reason 2</div>
+    <div class="reason-card" data-reason="You always support me, no matter what 💞">💘 Reason 3</div>
+    <div class="reason-card" data-reason="He remembers details others forget. 🌍">💝 Reason 4</div>
+    <div class="reason-card" data-reason="He is patient with me. 💝">✨ Reason 5</div>
+    <div class="reason-card" data-reason="He makes me feel wanted. 💞">💞 Reason 6</div>
+    <div class="reason-card" data-reason="He brings peace into my chaos. 🕊️">💘 Reason 7</div>
+    <div class="reason-card" data-reason="He is my fav person to talk to. <3">✨ Reason 8</div>
+    <div class="reason-card" data-reason="He is the best part of my day. 🌍">💞 Reason 9</div>
+    <div class="reason-card" data-reason="He surprises me with little things. 💝">💘 Reason 10</div>
+  </div>
+
+  <!-- Next Button -->
+  <button class="next-btn" onclick="goNext()">Next ➜</button>
+
+  <script>
+    // 💕 Reveal reason on click
+    document.addEventListener("DOMContentLoaded", () => {
+      const cards = document.querySelectorAll(".reason-card");
+      cards.forEach(card => {
+        card.addEventListener("click", () => {
+          const reason = card.dataset.reason;
+          const revealed = document.createElement("div");
+          revealed.classList.add("revealed-reason");
+          revealed.innerHTML = `<p>${reason}</p>`;
+          card.replaceWith(revealed);
+        });
+      });
+    });
+
+    // 🎶 Continue background music
+    window.addEventListener("DOMContentLoaded", () => {
+      let music = document.getElementById("bg-music");
+      if (!music) {
+        music = document.createElement("audio");
+        music.id = "bg-music";
+        music.src = "happy-birthday-334876.mp3";
+        music.loop = true;
+        document.body.appendChild(music);
+      }
+
+      const wasPlaying = sessionStorage.getItem("musicPlaying");
+      const lastTime = parseFloat(sessionStorage.getItem("musicTime")) || 0;
+      if (wasPlaying === "true") {
+        music.currentTime = lastTime;
+        music.volume = 0.6;
+        music.play().catch(() => {});
+        setInterval(() => {
+          sessionStorage.setItem("musicTime", music.currentTime);
+        }, 1000);
+      }
+    });
+
+    // 🌸 Go to next page
+    function goNext() {
+      window.location.href = "gift.html";
+    }
+  </script>
+
+  <style>
+    /* Make Next button visible and cute */
+    .next-btn {
+      display: block;
+      margin: 30px auto;
+      padding: 12px 28px;
+      font-size: 1.2rem;
+      color: white;
+      background: linear-gradient(135deg, #ff9ff3, #cdb4db);
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(255, 182, 193, 0.6);
+      transition: transform 0.2s, box-shadow 0.2s;
+      z-index: 10;
+      position: relative;
+    }
+
+    .next-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255, 192, 203, 0.9);
+    }
+    .next-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 40px;
+    padding: 14px 32px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #ff9ff3, #cdb4db);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255, 182, 193, 0.6);
+    transition: transform 0.2s, box-shadow 0.2s;
+    z-index: 999;
+  }
+
+  .next-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(255, 192, 203, 0.9);
+  }
+  </style>
+</body>
+</html>
+
+

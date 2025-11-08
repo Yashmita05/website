@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Virtual Gift 🎁</title>
+  <link rel="stylesheet" href="style.css" />
+  
+  <style>
+    /* Adjustments specific to gift page */
+    .gift-page {
+      background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+      text-align: center;
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .glow-heading {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: white;
+      text-shadow: 0 0 15px #ffb6c1, 0 0 25px #cdb4db;
+      margin-bottom: 30px;
+    }
+
+    .gift-box {
+      font-size: 5rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .gift-box:hover {
+      transform: scale(1.1);
+    }
+
+    .hidden-message {
+      display: none;
+      margin-top: 30px;
+      max-width: 600px;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 25px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 25px rgba(255, 182, 193, 0.4);
+    }
+
+    .hidden-message.show {
+      display: block;
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Continue button styling */
+    .continue-btn {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 14px 32px;
+      border: none;
+      border-radius: 40px;
+      background: linear-gradient(90deg, #ff8fab, #cdb4db, #bde0fe);
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(255, 182, 193, 0.6);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .continue-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 25px rgba(255, 182, 193, 0.8);
+    }
+  </style>
+</head>
+<body class="gift-page">
+  <div class="container">
+    <h1 class="glow-heading">Click this!</h1>
+
+    <div class="gift-box" id="gift-box">🎁</div>
+
+    <div class="hidden-message" id="hidden-message">
+      <p>
+        This isn’t something you can unwrap — it’s just me,  
+        sending you all my love, warmth, and a little bit of forever. 💖
+      </p>
+      <button class="continue-btn" onclick="goNext()">Continue 💌</button>
+    </div>
+  </div>
+
+
+  <script src="script.js"></script>
+  <script>
+    const box = document.getElementById("gift-box");
+    const msg = document.getElementById("hidden-message");
+
+    box.addEventListener("click", () => {
+      box.classList.add("opened");
+      msg.classList.add("show");
+      launchConfetti();
+      launchFloatingHearts();
+    });
+
+    function goNext() {
+      window.location.href = "letter.html";
+    }
+    window.addEventListener("DOMContentLoaded", () => {
+    let music = document.getElementById("bg-music");
+    if (!music) {
+      music = document.createElement("audio");
+      music.id = "bg-music";
+      music.src = "happy-birthday-334876.mp3";
+      music.loop = true;
+      document.body.appendChild(music);
+    }
+
+    const wasPlaying = sessionStorage.getItem("musicPlaying");
+    const lastTime = parseFloat(sessionStorage.getItem("musicTime")) || 0;
+    if (wasPlaying === "true") {
+      music.currentTime = lastTime;
+      music.volume = 0.6;
+      music.play().catch(() => {});
+      setInterval(() => {
+        sessionStorage.setItem("musicTime", music.currentTime);
+      }, 1000);
+    }
+  });
+  </script>
+</body>
+</html>
